@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Таблица со случайными числами (JavaScript)</title>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+    .orange {
+        background-color: orange;
+    }
+</style>
+</head>
+<body>
+
+<table id="randomTable">
+    <thead>
+        <tr>
+            <th>Столбец 1</th>
+            <th>Столбец 2</th>
+            <th>Столбец 3</th>
+            <th>Столбец 4</th>
+            <th>Столбец 5</th>
+            <th>Столбец 6</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<button onclick="foo()">Добавить числа</button>
+
+<script>
+    // Создаем массив с 30 случайными числами от 0 до 99
+    var array = [];
+    for (var i = 0; i < 30; i++) {
+        array.push(Math.floor(Math.random() * 100));
+    }
+
+    // Создаем таблицу 5x6 на основе массива
+    var tableBody = document.querySelector("#randomTable tbody");
+    var index = 0;
+    for (var row = 0; row < 5; row++) {
+        var newRow = document.createElement("tr");
+        for (var col = 0; col < 6; col++) {
+            var number = array[index];
+            var cell = document.createElement("td");
+            cell.textContent = number;
+            if (number >= 50) {
+                cell.classList.add("orange");
+            }
+            newRow.appendChild(cell);
+            index++;
+        }
+        tableBody.appendChild(newRow);
+    }
+
+    // Функция для добавления случайного числа в таблицу
+    function foo() {
+        var newRow = document.createElement("tr");
+        for (var i = 0; i < 6; i++) {
+            var randomNumber = Math.floor(Math.random() * 100);
+            var cell = document.createElement("td");
+            cell.textContent = randomNumber;
+            if (randomNumber >= 50) {
+                cell.classList.add("orange");
+            }
+            newRow.appendChild(cell);
+        }
+        tableBody.appendChild(newRow);
+    }
+</script>
+
+</body>
+</html>
